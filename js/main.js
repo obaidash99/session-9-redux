@@ -81,6 +81,19 @@ store.dispatch(addProduct({ id: 1, title: 'product-1' }));
 
 console.log(store.getState());
 
+let amountInput = document.querySelector('#amount');
+
+let amountValue = document.querySelector('#value');
+amountValue.innerHTML = store.getState().bank;
+
+document.querySelector('#withdraw').addEventListener('click', () => {
+	store.dispatch(withdraw(+amountInput.value));
+});
+document.querySelector('#deposite').addEventListener('click', () => {
+	store.dispatch(deposite(+amountInput.value));
+});
+
 store.subscribe(() => {
 	console.log('CURRENT STATE: ', store.getState());
+	amountValue.innerHTML = store.getState().bank;
 });
